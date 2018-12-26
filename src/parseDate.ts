@@ -34,7 +34,7 @@ function tokenize(intlFormatter: Intl.DateTimeFormat, date: Date): Token[] {
 function createParser(options: FormatOptions): Parser {
   const [intlFormatter, intlFormatterLong] = intlFormattersOptions.map(
     formatterOptions =>
-      new Intl.DateTimeFormat('fr', {
+      new Intl.DateTimeFormat(options.locale, {
         ...formatterOptions,
         timeZone: options.timezone
       })
