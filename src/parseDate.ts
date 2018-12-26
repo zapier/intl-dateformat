@@ -19,6 +19,15 @@ const intlFormattersOptions = [
   }
 ]
 
+const createIntlFormatterWith = (options: FormatOptions): Intl.DateTimeFormat[] =>
+  intlFormattersOptions.map(
+    intlFormatterOptions =>
+      new Intl.DateTimeFormat(options.locale, {
+        ...intlFormatterOptions,
+        timeZone: options.timezone
+      })
+  )
+
 const longTokensTransformer = (token: Token): Token =>
   (token.type !== 'literal' ? { type: `l${token.type}`, value: token.value } : token) as Token
 
@@ -27,18 +36,11 @@ const datePartsReducer = (parts: DateParts, token: Token): DateParts => {
   return parts
 }
 
-function tokenize(intlFormatter: Intl.DateTimeFormat, date: Date): Token[] {
-  return intlFormatter.formatToParts(date).filter(token => token.type !== 'literal') as Token[]
-}
+const tokenize = (intlFormatter: Intl.DateTimeFormat, date: Date): Token[] =>
+  intlFormatter.formatToParts(date).filter(token => token.type !== 'literal') as Token[]
 
-function createParser(options: FormatOptions): Parser {
-  const [intlFormatter, intlFormatterLong] = intlFormattersOptions.map(
-    formatterOptions =>
-      new Intl.DateTimeFormat(options.locale, {
-        ...formatterOptions,
-        timeZone: options.timezone
-      })
-  )
+const createParser = (options: FormatOptions): Parser => {
+  const [intlFormatter, intlFormatterLong] = createIntlFormatterWith(options)
 
   return function parseDateImpl(date: Date): DateParts {
     const tokens = tokenize(intlFormatter, date)
