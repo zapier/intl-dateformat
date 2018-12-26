@@ -43,8 +43,7 @@ function createParser(options: FormatOptions): Parser {
   return function parseDateImpl(date: Date): DateParts {
     const tokens = tokenize(intlFormatter, date)
     const longTokens = tokenize(intlFormatterLong, date).map(longTokensTransformer)
-
-    const allTokens = [...tokens, ...longTokens, { type: 'timestamp', value: date.getTime() }]
+    const allTokens = [...tokens, ...longTokens]
 
     return allTokens.reduce(datePartsReducer, {} as DateParts)
   }
