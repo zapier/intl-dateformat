@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./art.png" />
+  <img src="./art.png" width="600" height="300" />
 </h1>
 
 <div align="center">
