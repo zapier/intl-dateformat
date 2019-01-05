@@ -4,8 +4,10 @@
 
 <div align="center">
   <h4>Format a date using Intl.DateTimeFormat goodness.</h4>
-  <img src="https://img.shields.io/travis/zapier/intl-dateformat.svg?style=flat-square" />
-  <img src="https://img.badgesize.io/https://unpkg.com/intl-dateformat/dist/intl-dateformat.min.js?compression=gzip&style=flat-square" />
+  <a href="https://travis-ci.com/zapier/intl-dateformat">
+    <img src="https://flat.badgen.net/travis/zapier/intl-dateformat" />
+  </a>
+  <img src="https://flat.badgen.net/badgesize/gzip/https://unpkg.com/intl-dateformat@latest/lib/index.js" />
 </div>
 
 <p align="center">
