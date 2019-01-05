@@ -2,13 +2,14 @@
   <img src="./art.png" width="600" height="300" />
 </h1>
 
-<div align="center">
-  <h4>Format a date using Intl.DateTimeFormat goodness.</h4>
+<h4 align="center">Format a date using Intl.DateTimeFormat goodness.</h4>
+
+<p align="center">
   <a href="https://travis-ci.com/zapier/intl-dateformat">
     <img src="https://flat.badgen.net/travis/zapier/intl-dateformat" />
   </a>
   <img src="https://flat.badgen.net/badgesize/gzip/https://unpkg.com/intl-dateformat@latest/lib/index.js" />
-</div>
+</p>
 
 <p align="center">
   <a href="#features">Features</a> •
@@ -22,7 +23,7 @@
 ## Features
 
 * ✌ **Small**: As it directly leverages `Intl.DateTimeFormat`, there is no need to bundle additional locales or a timezones database. It's already in your Browser!
-* 👌 **Simple**: It suppors a subset of ISO 8601 formats, discarding very rarely used date parts.
+* 👌**Simple**: It suppors a subset of ISO 8601 formats, discarding very rarely used date parts.
 * 🤟 **Extensible**: That said, if you want to customize things you can pass [custom formatters](#custom-formatters).
 
 ## Installation
