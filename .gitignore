@@ -3,7 +3,6 @@
 .rpt2_cache
 index.js
 *.d.ts
-coverage/
 lib/
 
 # node
