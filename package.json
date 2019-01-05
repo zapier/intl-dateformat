@@ -11,7 +11,7 @@
   "scripts": {
     "prepare": "npm run build",
     "build": "rollup -c && dts-bundle-generator -o lib/index.d.ts src/index.ts",
-    "test": "NODE_ICU_DATA=test/fixtures/icudt62l.dat nyc ava"
+    "test": "NODE_ICU_DATA=test/fixtures/icudt62l.dat TZ=UTC nyc ava"
   },
   "files": [
     "lib/"
