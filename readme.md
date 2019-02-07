@@ -23,7 +23,7 @@
 ## Features
 
 * ✌ **Small**: As it directly leverages `Intl.DateTimeFormat`, there is no need to bundle additional locales or a timezones database. It's already in your Browser!
-* 👌**Simple**: It suppors a subset of ISO 8601 formats, discarding very rarely used date parts.
+* 👌**Simple**: It supports a subset of ISO 8601 formats, discarding very rarely used date parts.
 * 🤟 **Extensible**: That said, if you want to customize things you can pass [custom formatters](#custom-formatters).
 
 ## Installation
