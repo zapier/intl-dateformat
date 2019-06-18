@@ -4,7 +4,7 @@ export type DatePartName =
   | 'month'
   | 'lmonth'
   | 'day'
-  | 'dayperiod'
+  | 'dayPeriod'
   | 'hour'
   | 'lhour'
   | 'minute'

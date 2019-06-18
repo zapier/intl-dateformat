@@ -39,6 +39,12 @@ const datePartsReducer = (parts: DateParts, token: Token): DateParts => {
 const tokenize = (intlFormatter: Intl.DateTimeFormat, date: Date): Token[] =>
   intlFormatter.formatToParts(date).filter(token => token.type !== 'literal') as Token[]
 
+const normalize = (parts: DateParts): DateParts => {
+  // Chrome <= 71 incorrectly case `dayperiod` (#4)
+  parts.dayPeriod = parts.dayPeriod || (parts as any).dayperiod
+  return parts
+}
+
 const createParser = (options: FormatOptions): Parser => {
   const [intlFormatter, intlFormatterLong] = createIntlFormatterWith(options)
 
@@ -46,8 +52,9 @@ const createParser = (options: FormatOptions): Parser => {
     const tokens = tokenize(intlFormatter, date)
     const longTokens = tokenize(intlFormatterLong, date).map(longTokensTransformer)
     const allTokens = [...tokens, ...longTokens]
+    const parts = allTokens.reduce(datePartsReducer, {} as DateParts)
 
-    return allTokens.reduce(datePartsReducer, {} as DateParts)
+    return normalize(parts)
   }
 }
 

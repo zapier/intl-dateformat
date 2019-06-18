@@ -3,7 +3,7 @@ export default {
   year: '1984',
   month: '01',
   lmonth: 'January',
-  dayperiod: 'PM',
+  dayPeriod: 'PM',
   day: '17',
   lhour: '16',
   hour: '04',
