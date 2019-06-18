@@ -13,5 +13,5 @@ const customFormatters: CustomFormatters = {
   SSS: (parts, date) => String(date.getTime()).slice(-3)
 }
 
-test.only('expose new formatters', testMask, customFormatters, 'SSS', '000')
+test('expose new formatters', testMask, customFormatters, 'SSS', '000')
 test('still expose vanilla formatters', testMask, {}, 'YYYY-MM-DD', '1984-01-17')
