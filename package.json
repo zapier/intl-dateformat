@@ -28,7 +28,6 @@
   ],
   "devDependencies": {
     "ava": "^1.0.1",
-    "dts-bundle-generator": "^2.0.0",
     "full-icu": "^1.2.1",
     "nyc": "^13.1.0",
     "rollup": "^0.68.2",
