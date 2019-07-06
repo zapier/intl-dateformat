@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "prepare": "npm run build",
-    "build": "rollup -c && dts-bundle-generator -o lib/index.d.ts src/index.ts",
+    "build": "rollup -c",
     "test": "NODE_ICU_DATA=$(node-full-icu-path) TZ=UTC nyc ava"
   },
   "files": [
