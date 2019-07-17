@@ -6,7 +6,8 @@ export default {
   output: [
     {
       file: pkg.main,
-      format: 'cjs'
+      name: 'intl-dateformat',
+      format: 'umd'
     },
     {
       file: pkg.module,
