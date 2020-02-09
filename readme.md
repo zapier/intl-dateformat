@@ -35,7 +35,7 @@ $ npm install intl-dateformat
 ## Example
 
 ```js
-import formatDate from 'intl-formatdate'
+import formatDate from 'intl-dateformat'
 
 const date = new Date(Date.UTC(1984, 0, 17, 16, 13, 37, 0))
 
