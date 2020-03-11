@@ -15,7 +15,8 @@ const formatters: Formatters = {
   ddd: parts => parts.weekday.slice(0, 3),
   A: parts => parts.dayPeriod,
   a: parts => parts.dayPeriod.toLowerCase(),
-  HH: parts => parts.lhour,
+  // XXX: fix Chrome 80+ bug going over 24h
+  HH: parts => ('0' + (Number(parts.lhour) % 24)).slice(-2),
   hh: parts => parts.hour,
   mm: parts => parts.minute,
   ss: parts => parts.second
