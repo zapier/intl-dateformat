@@ -40,8 +40,9 @@ const tokenize = (intlFormatter: Intl.DateTimeFormat, date: Date): Token[] =>
   intlFormatter.formatToParts(date).filter(token => token.type !== 'literal') as Token[]
 
 const normalize = (parts: DateParts): DateParts => {
-  // Chrome <= 71 incorrectly case `dayperiod` (#4)
+  // Chrome <= 71 and Node >= 10 incorrectly case `dayperiod` (#4)
   parts.dayPeriod = parts.dayPeriod || (parts as any).dayperiod
+  delete (parts as any).dayperiod
   return parts
 }
 
