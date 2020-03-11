@@ -43,6 +43,10 @@ const normalize = (parts: DateParts): DateParts => {
   // Chrome <= 71 and Node >= 10 incorrectly case `dayperiod` (#4)
   parts.dayPeriod = parts.dayPeriod || (parts as any).dayperiod
   delete (parts as any).dayperiod
+
+  // Chrome >= 80 has a bug going over 24h
+  parts.lhour = ('0' + (Number(parts.lhour) % 24)).slice(-2)
+
   return parts
 }
 
