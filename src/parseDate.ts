@@ -10,21 +10,21 @@ const intlFormattersOptions = [
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit'
+    second: '2-digit',
   },
   {
     month: 'long',
     hour: '2-digit',
-    hour12: false
-  }
+    hour12: false,
+  },
 ]
 
 const createIntlFormatterWith = (options: FormatOptions): Intl.DateTimeFormat[] =>
   intlFormattersOptions.map(
-    intlFormatterOptions =>
+    (intlFormatterOptions) =>
       new Intl.DateTimeFormat(options.locale, {
         ...intlFormatterOptions,
-        timeZone: options.timezone
+        timeZone: options.timezone,
       })
   )
 
@@ -37,11 +37,12 @@ const datePartsReducer = (parts: DateParts, token: Token): DateParts => {
 }
 
 const tokenize = (intlFormatter: Intl.DateTimeFormat, date: Date): Token[] =>
-  intlFormatter.formatToParts(date).filter(token => token.type !== 'literal') as Token[]
+  intlFormatter.formatToParts(date).filter((token) => token.type !== 'literal') as Token[]
 
 const normalize = (parts: DateParts): DateParts => {
   // Chrome <= 71 and Node >= 10 incorrectly case `dayperiod` (#4)
-  parts.dayPeriod = parts.dayPeriod || (parts as any).dayperiod
+  // dayPeriod will be undefined for 24 hour clocks so fall back to empty string
+  parts.dayPeriod = parts.dayPeriod || (parts as any).dayperiod || ''
   delete (parts as any).dayperiod
 
   // Chrome >= 80 has a bug going over 24h
