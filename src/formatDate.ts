@@ -23,7 +23,7 @@ const formatters: Formatters = {
 }
 
 const createCustomPattern = (customFormatters: CustomFormatters) =>
-  Object.keys(customFormatters).reduce((pattern, key) => `|${key}`, '')
+  Object.keys(customFormatters).reduce((_, key) => `|${key}`, '')
 
 export default function formatDate(
   customFormatters: CustomFormatters,
@@ -31,12 +31,13 @@ export default function formatDate(
   parts: DateParts,
   date: Date
 ): string {
+  const literalPattern = '\\[([^\\]]+)\\]|'
   const customPattern = createCustomPattern(customFormatters)
-  const patternRegexp = new RegExp(`${defaultPattern}${customPattern}`, 'g')
+  const patternRegexp = new RegExp(`${literalPattern}${defaultPattern}${customPattern}`, 'g')
 
   const allFormatters = { ...formatters, ...customFormatters }
 
-  return format.replace(patternRegexp, (mask: FormatterMask) =>
-    (allFormatters[mask] || identity)(parts, date)
-  )
+  return format.replace(patternRegexp, (mask: FormatterMask, literal: string) => {
+    return literal || (allFormatters[mask] || identity)(parts, date)
+  })
 }

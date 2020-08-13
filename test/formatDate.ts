@@ -22,3 +22,8 @@ test('format a 2 digits 24-hour', testMask, 'HH', '16')
 test('format a 2 digits hour', testMask, 'hh', '04')
 test('format a 2 digits minute', testMask, 'mm', '13')
 test('format a 2 digits second', testMask, 'ss', '37')
+
+test('format a date with a literal string', t => {
+  const dateStr = formatDate({}, '[It is] dddd[,] MMMM DD[th]', tokens, tokensDate)
+  t.is(dateStr, 'It is Tuesday, January 17th')
+})
