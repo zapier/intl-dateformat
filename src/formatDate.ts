@@ -2,8 +2,6 @@ import { CustomFormatters, DateParts, Formatters, FormatterMask } from './types'
 
 const defaultPattern = '[YMDdAaHhms]+'
 
-const identity = (x: any) => x
-
 const formatters: Formatters = {
   YYYY: parts => parts.year,
   YY: parts => parts.year.slice(-2),
@@ -38,6 +36,6 @@ export default function formatDate(
   const allFormatters = { ...formatters, ...customFormatters }
 
   return format.replace(patternRegexp, (mask: FormatterMask, literal: string) => {
-    return literal || (allFormatters[mask] || identity)(parts, date)
+    return literal || allFormatters[mask](parts, date)
   })
 }
