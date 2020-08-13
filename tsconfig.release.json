@@ -3,6 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "lib",
+    "module": "esnext",
     "removeComments": true
   },
   "include": [
