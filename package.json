@@ -1,6 +1,6 @@
 {
   "name": "intl-dateformat",
-  "version": "0.1.4",
+  "version": "0.2.0-0",
   "description": "Format a date using Intl.DateTimeFormat goodness.",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
