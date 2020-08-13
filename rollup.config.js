@@ -7,7 +7,8 @@ export default {
     {
       file: pkg.main,
       name: 'intl-dateformat',
-      format: 'umd'
+      format: 'umd',
+      exports: 'named'
     },
     {
       file: pkg.module,
