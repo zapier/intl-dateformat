@@ -1,6 +1,6 @@
 import { CustomFormatters, DateParts, Formatters, FormatterMask } from './types'
 
-const defaultPattern = '[YMDdAaHhms]+'
+const defaultPattern = '[ZYMDdAaHhms]+'
 
 const formatters: Formatters = {
   YYYY: parts => parts.year,
@@ -17,7 +17,9 @@ const formatters: Formatters = {
   HH: parts => ('0' + (Number(parts.lhour) % 24)).slice(-2),
   hh: parts => parts.hour,
   mm: parts => parts.minute,
-  ss: parts => parts.second
+  ss: parts => parts.second,
+  Z: parts => parts.timeZoneName,
+  ZZ: parts => parts.ltimeZoneName,
 }
 
 const createCustomPattern = (customFormatters: CustomFormatters) =>

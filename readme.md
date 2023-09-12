@@ -72,21 +72,23 @@ formatDate(date, 'YYYY-MM-DD hh:mm:ss A')
 
 The format is a combination of the following masks:
 
-| Mask   | Description           | Example    |
-| ------ | --------------------- | ---------- |
-| `YYYY` | 4-digits year         | `1984`     |
-| `YY`   | 2-digits year         | `84`       |
-| `MMMM` | Month name            | `January`  |
-| `MMM`  | Short month name      | `Jan`      |
-| `DD`   | 2-digits day          | `17`       |
-| `dddd` | Day of the week       | `Tuesday`  |
-| `ddd`  | Short day of the week | `Tue`      |
-| `A`    | Day period            | `AM`, `PM` |
-| `a`    | Lowercased day period | `am`, `pm` |
-| `HH`   | 24-hours hour         | `16`       |
-| `hh`   | 12-hours hour         | `04`       |
-| `mm`   | 2-digit minute        | `13`       |
-| `ss`   | 2-digit second        | `37`       |
+| Mask   | Description           | Example           |
+| ------ | --------------------- | ------------------|
+| `YYYY` | 4-digits year         | `1984`            |
+| `YY`   | 2-digits year         | `84`              |
+| `MMMM` | Month name            | `January`         |
+| `MMM`  | Short month name      | `Jan`             |
+| `DD`   | 2-digits day          | `17`              |
+| `dddd` | Day of the week       | `Tuesday`         |
+| `ddd`  | Short day of the week | `Tue`             |
+| `A`    | Day period            | `AM`, `PM`        |
+| `a`    | Lowercased day period | `am`, `pm`        |
+| `HH`   | 24-hours hour         | `16`              |
+| `hh`   | 12-hours hour         | `04`              |
+| `mm`   | 2-digit minute        | `13`              |
+| `ss`   | 2-digit second        | `37`              |
+| `Z`    | Short Timezone Name   | `EST`             |
+| `ZZ`   | Long Timezone Name    | `America/Pacific` |
 
 Masks will be replaced by their associated date part.
 

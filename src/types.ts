@@ -9,6 +9,8 @@ export type DatePartName =
   | 'lhour'
   | 'minute'
   | 'second'
+  | 'timeZoneName'
+  | 'ltimeZoneName'
 
 export type DateParts = { [k in DatePartName]: string }
 
@@ -31,6 +33,8 @@ export type FormatterMask =
   | 'hh'
   | 'mm'
   | 'ss'
+  | 'Z'
+  | 'ZZ'
 
 export type Formatter = (tokens: DateParts, date: Date) => string
 
