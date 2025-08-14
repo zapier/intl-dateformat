@@ -1,14 +1,19 @@
-# project
-.nyc_output
-.rpt2_cache
-index.js
-*.d.ts
+# Project
 lib/
+coverage/
 
-# node
-node_modules
-npm-debug.log
-yarn-error.log
+# Build
+tsconfig.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # OS
 .DS_Store

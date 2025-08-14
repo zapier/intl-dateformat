@@ -1,16 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "declaration": true,
     "declarationDir": "lib",
-    "module": "esnext",
-    "removeComments": true
+    "declaration": true,
+    "incremental": false,
+    "removeComments": true,
+    "rootDir": "./src",
+    "outDir": "./lib"
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "test/*.ts"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

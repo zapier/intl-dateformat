@@ -1,0 +1,99 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Get pnpm store directory
+        id: pnpm-cache-dir-path
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        id: pnpm-cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - run: pnpm install
+
+      - run: pnpm lint:ci
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: szenius/set-timezone@v2.0
+        with:
+          timezoneLinux: UTC
+
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Get pnpm store directory
+        id: pnpm-cache-dir-path
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        id: pnpm-cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - run: pnpm install
+
+      - run: pnpm test
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Get pnpm store directory
+        id: pnpm-cache-dir-path
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        id: pnpm-cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - run: pnpm install
+
+      - run: pnpm typecheck

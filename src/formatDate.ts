@@ -1,6 +1,11 @@
-import { CustomFormatters, DateParts, Formatters, FormatterMask } from './types'
+import type {
+  CustomFormatters,
+  DateParts,
+  FormatterMask,
+  Formatters,
+} from './types';
 
-const defaultPattern = '[YMDdAaHhms]+'
+const defaultPattern = 'Y+|M+|D+|d+|A+|a+|H+|h+|m+|s+|S+|X+';
 
 const formatters: Formatters = {
   YYYY: parts => parts.year,
@@ -11,31 +16,37 @@ const formatters: Formatters = {
   DD: parts => parts.day,
   dddd: parts => parts.weekday,
   ddd: parts => parts.weekday.slice(0, 3),
-  A: parts => parts.dayPeriod,
+  A: parts => parts.dayPeriod.toUpperCase(),
   a: parts => parts.dayPeriod.toLowerCase(),
-  // XXX: fix Chrome 80+ bug going over 24h
-  HH: parts => ('0' + (Number(parts.lhour) % 24)).slice(-2),
+  HH: parts => parts.lhour,
   hh: parts => parts.hour,
   mm: parts => parts.minute,
-  ss: parts => parts.second
-}
+  ss: parts => parts.second,
+  SSS: parts => parts.fractionalSecond,
+  XXX: parts => parts.timeZoneName.slice(3) || 'Z',
+};
 
 const createCustomPattern = (customFormatters: CustomFormatters) =>
-  Object.keys(customFormatters).reduce((_, key) => `|${key}`, '')
+  Object.keys(customFormatters).reduce((_, key) => `|${key}`, '');
 
-export default function formatDate(
+export const formatDate = (
   customFormatters: CustomFormatters,
   format: string,
   parts: DateParts,
-  date: Date
-): string {
-  const literalPattern = '\\[([^\\]]+)\\]|'
-  const customPattern = createCustomPattern(customFormatters)
-  const patternRegexp = new RegExp(`${literalPattern}${defaultPattern}${customPattern}`, 'g')
+  date: Date,
+): string => {
+  const literalPattern = '\\[([^\\]]+)\\]|';
+  const customPattern = createCustomPattern(customFormatters);
+  const patternRegexp = new RegExp(
+    `${literalPattern}${defaultPattern}${customPattern}`,
+    'g',
+  );
 
-  const allFormatters = { ...formatters, ...customFormatters }
+  const allFormatters = { ...formatters, ...customFormatters };
 
-  return format.replace(patternRegexp, (mask: FormatterMask, literal: string) => {
-    return literal || allFormatters[mask](parts, date)
-  })
-}
+  return format.replace(
+    patternRegexp,
+    (mask, literal) =>
+      literal || allFormatters[mask as FormatterMask](parts, date),
+  );
+};

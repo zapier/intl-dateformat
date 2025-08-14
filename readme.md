@@ -5,10 +5,10 @@
 <h4 align="center">Format a date using Intl.DateTimeFormat goodness.</h4>
 
 <p align="center">
-  <a href="https://travis-ci.com/zapier/intl-dateformat">
-    <img src="https://flat.badgen.net/travis/zapier/intl-dateformat" />
+  <img alt="GitHub Checks" src="https://img.shields.io/github/check-runs/zapier/intl-dateformat/master">
+  <a href="https://www.npmjs.com/package/intl-dateformat">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/intl-dateformat">
   </a>
-  <img src="https://flat.badgen.net/badgesize/gzip/https://unpkg.com/intl-dateformat@latest/lib/index.js" />
 </p>
 
 <p align="center">
@@ -23,13 +23,18 @@
 ## Features
 
 - ✌ **Small**: As it directly leverages `Intl.DateTimeFormat`, there is no need to bundle additional locales or a timezones database. It's already in your Browser!
-- 👌**Simple**: It supports a subset of ISO 8601 formats, discarding very rarely used date parts.
+- 👌 **Simple**: It supports a subset of ISO 8601 formats, discarding very rarely used date parts.
 - 🤟 **Extensible**: That said, if you want to customize things you can pass [custom formatters](#custom-formatters).
 
 ## Installation
 
 ```js
+// NPM
 $ npm install intl-dateformat
+// Yarn
+$ yarn add intl-dateformat
+// PNPM
+$ pnpm add intl-dateformat
 ```
 
 ## Example
@@ -72,21 +77,23 @@ formatDate(date, 'YYYY-MM-DD hh:mm:ss A')
 
 The format is a combination of the following masks:
 
-| Mask   | Description           | Example    |
-| ------ | --------------------- | ---------- |
-| `YYYY` | 4-digits year         | `1984`     |
-| `YY`   | 2-digits year         | `84`       |
-| `MMMM` | Month name            | `January`  |
-| `MMM`  | Short month name      | `Jan`      |
-| `DD`   | 2-digits day          | `17`       |
-| `dddd` | Day of the week       | `Tuesday`  |
-| `ddd`  | Short day of the week | `Tue`      |
-| `A`    | Day period            | `AM`, `PM` |
-| `a`    | Lowercased day period | `am`, `pm` |
-| `HH`   | 24-hours hour         | `16`       |
-| `hh`   | 12-hours hour         | `04`       |
-| `mm`   | 2-digit minute        | `13`       |
-| `ss`   | 2-digit second        | `37`       |
+| Mask   | Description               | Example       |
+| ------ | ------------------------- | ------------- |
+| `YYYY` | 4-digits year             | `1984`        |
+| `YY`   | 2-digits year             | `84`          |
+| `MMMM` | Month name                | `January`     |
+| `MMM`  | Short month name          | `Jan`         |
+| `DD`   | 2-digits day              | `17`          |
+| `dddd` | Day of the week           | `Tuesday`     |
+| `ddd`  | Short day of the week     | `Tue`         |
+| `A`    | Day period                | `AM`, `PM`    |
+| `a`    | Lowercased day period     | `am`, `pm`    |
+| `HH`   | 24-hours hour             | `16`          |
+| `hh`   | 12-hours hour             | `04`          |
+| `mm`   | 2-digit minute            | `13`          |
+| `ss`   | 2-digit second            | `37`          |
+| `SSS`  | 3-digit fractional second | `123`         |
+| `XXX`  | Timezone offset or 'Z'    | `+10:00`, `Z` |
 
 Masks will be replaced by their associated date part.
 

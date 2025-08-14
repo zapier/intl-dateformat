@@ -1,4 +1,4 @@
-import createDateFormatter from './createDateFormatter'
+import { createDateFormatter } from './createDateFormatter';
 
-export default createDateFormatter({})
-export { createDateFormatter }
+export default createDateFormatter({});
+export { createDateFormatter };

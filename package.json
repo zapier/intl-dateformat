@@ -2,20 +2,11 @@
   "name": "intl-dateformat",
   "version": "0.2.0-0",
   "description": "Format a date using Intl.DateTimeFormat goodness.",
-  "main": "lib/index.js",
-  "module": "lib/index.mjs",
-  "typings": "lib/index.d.js",
+  "type": "module",
+  "main": "src/index.js",
   "repository": "zapier/intl-dateformat",
   "author": "Nicolas Gryman <ngryman@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "prepare": "npm run build",
-    "build": "rollup -c",
-    "test": "NODE_ICU_DATA=$(node-full-icu-path) TZ=UTC nyc ava"
-  },
-  "files": [
-    "lib/"
-  ],
   "keywords": [
     "date",
     "format",
@@ -26,16 +17,46 @@
     "locale",
     "Intl.DateTimeFormat"
   ],
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:clean": "rimraf dist",
+    "lint": "biome check --write .",
+    "lint:ci": "biome check .",
+    "test": "vitest",
+    "test:coverage": "pnpm test -- --coverage",
+    "typecheck": "tsc -p ./tsconfig.json",
+    "prepare": "husky"
+  },
+  "files": [
+    "lib/"
+  ],
+  "publishConfig": {
+    "access": "restricted",
+    "main": "./lib/index.cjs",
+    "module": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "import": "./lib/index.js",
+        "require": "./lib/index.cjs",
+        "types": "./lib/index.d.ts"
+      }
+    }
+  },
   "devDependencies": {
-    "ava": "^3.11.1",
-    "full-icu": "^1.3.1",
-    "nyc": "^15.1.0",
-    "prettier": "^2.0.5",
-    "rollup": "^2.23.1",
-    "rollup-plugin-typescript2": "^0.27.2",
-    "ts-node": "^8.10.2",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.9.7"
+    "@biomejs/biome": "^2.1.4",
+    "@types/node": "^24.2.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^16.1.5",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   }
 }
